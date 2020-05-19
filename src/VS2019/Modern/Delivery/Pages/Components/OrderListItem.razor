@@ -1,0 +1,29 @@
+﻿
+@inject IOrderDataService OrderService
+
+@if (order != null)
+{
+    <tr>
+        <td>@order.OrderNum.ToString()</td>
+        <td>@order.TimeCreated.ToString()</td>
+        <td>@order.LocationCreated</td>
+        <td>$@order.BeforeTax.ToString("F2")</td>
+        <td>$@order.Tax.ToString("F2")</td>
+        <td>$@order.Shipping.ToString("F2")</td>
+        <td>$@order.Tip.ToString("F2")</td>
+        <td>$@order.Total.ToString("F2")</td>
+    </tr>
+}
+
+@code
+{
+    [Parameter]
+    public int Id { get; set; }
+    public DeliverySupport.Models.IOrderModel order { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        order = await OrderService.GetOrderAsync(Id);
+    }
+
+}

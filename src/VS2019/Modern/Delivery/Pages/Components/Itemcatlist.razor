@@ -1,0 +1,42 @@
+﻿@page "/ItemcatList"
+
+@using Delivery.Pages.Components
+@inject IItemDataService itemService
+
+@if (items == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>      </th>
+                <th>      </th>
+                <th>Amount</th>
+                <th>Quantity</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in items)
+            {
+                <ItemListItem Id="@item.Id"></ItemListItem>
+            }
+        </tbody>
+    </table>
+}
+
+
+@code {
+    [Parameter]
+    public int CategoryNum { get; set; }
+    private IEnumerable<DeliverySupport.Models.IItemModel> items;
+    
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        items = await itemService.GetItemsByCategoryNumAsync(CategoryNum);
+    }
+}

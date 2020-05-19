@@ -1,0 +1,32 @@
+{
+  "ConnectionStrings": {
+    "SQLDB": "Data Source = [ReplaceServer];Database = Modern; Integrated Security = True"
+  },
+
+  "Serilog": {
+    "MinimumLevel": {
+      "Default": "Verbose",
+      "Override": {
+        "Microsoft": "Error",
+        "Microsoft.Extensions": "Information",
+        "System": "Debug"
+      }
+    },
+    "Enrich": [
+      "FromLogContext",
+      "WithMachineName",
+      "WithProcessId",
+      "WithThreadId"
+    ],
+    "WriteTo": [
+      { "Name": "Console" },
+      {
+        "Name": "File",
+        "Args": {
+          "Path": "C:\\temp\\delivery\\log\\XMLDataTest.Log",
+          "outputTemplate":  "{Timestamp:G} {Message}{NewLine:1}{Exception:1}"
+        }
+      }
+    ]
+  }
+}

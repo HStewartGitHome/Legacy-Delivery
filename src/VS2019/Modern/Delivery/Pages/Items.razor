@@ -1,0 +1,53 @@
+﻿@page "/Items"
+
+<h1>Items Editor @Message</h1>
+
+<button @onclick="OnToggle">@ToggleText</button>
+
+@if ( UseItemCard == true )
+{
+    <ItemCardItems CategoryNum="0" NewItem="0" OnDeleted="HandleOnDeleted"></ItemCardItems> 
+}
+else
+{
+    <ItemListItems></ItemListItems>
+}    
+
+
+
+@code {
+    private bool UseItemCard { get; set;  }
+    private string ToggleText { get; set; }
+    private string Message { get; set; }
+
+    protected override void  OnInitialized()
+    {
+        UseItemCard = true;
+        ToggleText = "Use Item List";
+    }
+
+    private void OnToggle()
+    {
+        Message = "";
+        if ( UseItemCard == true )
+        {
+            UseItemCard = false;
+            ToggleText = "Use Item Card";
+        }
+        else
+        {
+            UseItemCard = true;
+            ToggleText = "Use Item List";
+        }
+    }
+
+
+    public void HandleOnDeleted( string str )
+    {
+        UseItemCard = true;
+        Message = str;
+    }
+
+
+
+}

@@ -1,0 +1,49 @@
+﻿@page "/Messages"
+
+@using Delivery.Pages.Components
+@inject IMessageDataService MessageService
+@inject Microsoft.Extensions.Configuration.IConfiguration configuration
+@inject DeliverySupport.Services.IDataCleanup dataCleanup
+
+<h1>Message List</h1>
+
+<p>This component demonstrates fetching messages from a service.</p>
+
+@if (messages == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>To Name</th>
+                <th>From Name</th>
+                <th>MessageText</th>
+                <th>Time</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var message in messages)
+            {
+                <MessageListItem Id="@message.Id"></MessageListItem>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<DeliverySupport.Models.IMessageModel> messages;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        string str = configuration["AppSettings:CleanupHours"];
+        DateTime time = dataCleanup.GetPreviousDate(str);
+        await MessageService.DeleteMessagesBeforeTime(time);
+
+        messages = await MessageService.GetMessagesAsync();
+    }
+}

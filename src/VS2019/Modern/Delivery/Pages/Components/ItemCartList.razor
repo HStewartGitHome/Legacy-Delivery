@@ -1,0 +1,74 @@
+﻿@page  "/ItemCartList"
+
+
+@using Delivery.Pages.Components
+@inject DeliverySupport.Services.IOrderCart cart
+
+
+
+@if (OrderNum != cart.OrderNum)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>      </th>
+                <th>                        </th>
+                <th>Amount</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ ListQuantity = 0;
+                ListTotal = 0;
+            }
+            @foreach (var item in cart.Order.OrderItems)
+            {
+                DeliverySupport.Models.IExtendedOrderItemModel extItem = (DeliverySupport.Models.IExtendedOrderItemModel)item;
+                if (extItem.ImageFileName != null)
+                    ImageName = "images/" + extItem.ImageFileName;
+                Total = extItem.Amount * extItem.Quantity;
+                ListQuantity += extItem.Quantity;
+                ListTotal += Total;
+
+                <tr>
+                    <td> <img src="@ImageName" height="60" width="60" /></td>
+                    <td>@extItem.Description</td>
+                    <td>$@extItem.Amount.ToString()</td>
+                    <td>@extItem.Quantity.ToString()</td>
+                    <td>$@Total</td>
+                </tr>
+            }
+
+            @if (ListQuantity > 0)
+            {
+            <t>
+                <td>       </td>
+                <td>@ItemCount</td>
+                <td></td>
+                <td>@ListQuantity.ToString()</td>
+                <td>$@ListTotal</td>
+            </t>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    [Parameter]
+    public int OrderNum { get; set; }
+    [Parameter]
+    public int ItemCount { get; set;  }
+
+
+    public string ImageName { get; set; }
+    public decimal Total { get; set; }
+    public decimal ListTotal { get; set; }
+    public int ListQuantity { get; set;  }
+}
+

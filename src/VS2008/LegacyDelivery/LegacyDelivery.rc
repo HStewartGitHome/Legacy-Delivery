@@ -1,0 +1,333 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#ifndef APSTUDIO_INVOKED
+#include "targetver.h"
+#endif
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#ifndef APSTUDIO_INVOKED\r\n"
+    "#include ""targetver.h""\r\n"
+    "#endif\r\n"
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""res\\LegacyDelivery.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""     // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\LegacyDelivery.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOGEX 0, 0, 170, 62
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About LegacyDelivery"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDR_MAINFRAME,IDC_STATIC,14,14,21,20
+    LTEXT           "LegacyDelivery, Version 1.0",IDC_STATIC,42,14,114,8,SS_NOPREFIX
+    LTEXT           "Copyright (C) 2020",IDC_STATIC,42,26,114,8
+    DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
+END
+
+IDD_LEGACYDELIVERY_DIALOG DIALOGEX 0, 0, 721, 379
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Legacy Delivery"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Exit",IDOK,628,326,74,31
+    CONTROL         "",IDC_STATIC,"Static",SS_BLACKFRAME,162,97,20,20
+    GROUPBOX        "Order",IDC_STATIC,7,7,596,353
+    GROUPBOX        "Commands",IDC_STATIC,608,31,106,341
+    DEFPUSHBUTTON   "Load",IDLOAD,621,95,75,29
+    PUSHBUTTON      "New",IDNEW,623,56,75,29
+    PUSHBUTTON      "Save",IDSAVE,622,138,75,29
+    LISTBOX         IDC_ORDERLIST,97,56,498,215,LBS_SORT | LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Seed List",IDSEEDLIST,28,97,65,27
+    PUSHBUTTON      "Test",IDTEST,619,213,75,29
+    LTEXT           "Order ID",IDC_STATIC,97,298,29,8
+    EDITTEXT        IDC_OrderNum,155,294,67,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Before Tax",IDC_STATIC,390,284,36,8
+    EDITTEXT        IDC_BEFORETAX,528,279,67,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Tax",IDC_STATIC,390,300,13,8
+    EDITTEXT        IDC_TOTAL,529,342,67,14,ES_AUTOHSCROLL | ES_READONLY
+    EDITTEXT        IDC_TAX,528,295,67,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Total",IDC_STATIC,393,348,17,8
+    PUSHBUTTON      "New Item",IDNEWITEM,27,57,65,27
+    PUSHBUTTON      "Send Message",IDSENDMSG,27,142,65,27
+END
+
+IDD_NEWITEM DIALOGEX 0, 0, 448, 200
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add Mew Item  to  Order"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,308,179,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,379,179,50,14
+    LTEXT           "Item",IDC_STATIC,26,29,16,8
+    LTEXT           "Qty",IDC_STATIC,27,60,13,8
+    COMBOBOX        IDC_ITEMCOMBO,61,31,365,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_QTYCOMBO,62,54,48,30,CBS_DROPDOWN | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_TEST DIALOGEX 0, 0, 316, 182
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Test "
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,259,161,50,14
+    PUSHBUTTON      "Exception Test",IDC_EXCEPTION,25,23,150,14
+    PUSHBUTTON      "Log Call Stack",IDC_LOGCALLSTACK,27,109,150,14
+    PUSHBUTTON      "Net Exception Test",IDC_NETEXCEPTION,26,53,150,14
+END
+
+IDD_SAVE DIALOGEX 0, 0, 316, 182
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Save Order"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Cancel",IDCANCEL,259,161,50,14
+    PUSHBUTTON      "Save to Router",IDC_SAVEROUTER,29,23,128,14
+    PUSHBUTTON      "Save Local",IDC_SAVELOCAL,27,47,128,14
+END
+
+IDD_CUSTOMER DIALOGEX 0, 0, 316, 182
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Enter Customer Details"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,205,161,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,259,161,50,14
+    LTEXT           "Name",IDC_STATIC,20,22,19,8
+    LTEXT           "Address",IDC_STATIC,19,42,27,8
+    LTEXT           "City",IDC_STATIC,21,61,14,8
+    LTEXT           "State",IDC_STATIC,19,83,18,8
+    LTEXT           "Zip",IDC_STATIC,22,102,10,8
+    EDITTEXT        IDC_NAME,73,17,177,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ADDRESS,72,36,225,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CITY,73,57,127,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_STATE,73,76,128,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ZIP,73,96,83,14,ES_AUTOHSCROLL
+END
+
+IDD_SENDMESSAGE DIALOGEX 0, 0, 316, 270
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Send Message"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Send",IDSENDMESSAGE,205,249,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,259,249,50,14
+    LTEXT           "To Name",IDC_STATIC,21,30,29,8
+    LTEXT           "From  Name",IDC_STATIC,23,51,39,8
+    LTEXT           "Message",IDC_STATIC,23,75,29,8
+    EDITTEXT        IDC_TONAME,69,24,226,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_FROMNAME,70,47,226,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_MESSAGE,68,74,226,91,ES_MULTILINE | ES_AUTOHSCROLL
+    LTEXT           "Location",IDC_STATIC,25,187,28,8
+    EDITTEXT        IDC_LOCATION,68,181,226,14,ES_AUTOHSCROLL | ES_READONLY
+    LTEXT           "Date Time",IDC_STATIC,26,214,33,8
+    EDITTEXT        IDC_DATETIME,68,213,226,14,ES_AUTOHSCROLL | ES_READONLY
+
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904e4"
+        BEGIN
+            VALUE "CompanyName", "TODO: <Company name>"
+            VALUE "FileDescription", "TODO: <File description>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "LegacyDelivery.exe"
+            VALUE "LegalCopyright", "TODO: (c) <Company name>.  All rights reserved."
+            VALUE "OriginalFilename", "LegacyDelivery.exe"
+            VALUE "ProductName", "TODO: <Product name>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1252
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_ABOUTBOX, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 163
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 55
+    END
+
+    IDD_LEGACYDELIVERY_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 714
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 372
+    END
+
+    IDD_NEWITEM, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 441
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 193
+    END
+
+    IDD_TEST, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 175
+    END
+
+    IDD_SAVE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 175
+    END
+
+    IDD_CUSTOMER, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 175
+    END
+
+    IDD_SENDMESSAGE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 309
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 263
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_ABOUTBOX            "&About LegacyDelivery..."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#include "res\LegacyDelivery.rc2"  // non-Microsoft Visual C++ edited resources
+#include "afxres.rc"     // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

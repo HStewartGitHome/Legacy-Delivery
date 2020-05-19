@@ -1,0 +1,51 @@
+﻿@page "/Orders"
+
+@using Delivery.Pages.Components
+@inject IOrderDataService orderService
+@inject Microsoft.Extensions.Configuration.IConfiguration configuration
+@inject DeliverySupport.Services.IDataCleanup dataCleanup
+
+<h1>Order List</h1>
+
+<p>This component demonstrates fetching orders from a service.</p>
+
+@if (orders == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>OrderNum</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>BeforeTax</th>
+                <th>Tax</th>
+                <th>Shipping</th>
+                <th>Tip</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in orders)
+            {
+                <OrderListItem Id="@order.Id"></OrderListItem>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<DeliverySupport.Models.IOrderModel> orders;
+
+    protected override async Task OnInitializedAsync()
+    {
+        string str = configuration["AppSettings:CleanupHours"];
+        DateTime time = dataCleanup.GetPreviousDate(str);
+        await orderService.DeleteOrdersBeforeTime(time);
+
+        orders = await orderService.GetOrdersAsync();
+    }
+}

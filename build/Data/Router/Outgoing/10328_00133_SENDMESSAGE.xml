@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+  <Method>SENDMESSAGE</Method>
+  <ID>10328_00133_SENDMESSAGE</ID>
+  <RequestType>2</RequestType>
+  <Location>LEGACY-CLIENT</Location>
+  <Time>5/18/2020 11:03:09 AM</Time>
+  <InOrder>
+    <CustomerObj>
+    </CustomerObj>
+  </InOrder>
+  <MessageObj>
+    <MessageType>1</MessageType>
+    <ToName>John</ToName>
+    <FromName>Stewart</FromName>
+    <MessageText>Please check out he legacy client and xml generated</MessageText>
+  </MessageObj>
+</Context>

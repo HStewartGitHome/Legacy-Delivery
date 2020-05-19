@@ -1,0 +1,138 @@
+﻿@page "/ItemCard"
+
+@inject IItemDataService itemService
+@inject DeliverySupport.Services.IOrderCart cart
+
+@if (item != null)
+{
+    @if ( (item.ItemNum != ConfirmDeleteItemNum) && (ConfirmDelete == true ) )
+    {
+        ConfirmDelete = false;
+    }
+
+    <div class="col-sm-6 col-md-3 item">
+        <div class="card w-100">
+            <div class="card-img-top d-flex align-items-center bg-light">
+                <div>
+                    <img class="img-thumbnail" src="@itemImage" alt="Card image cap">
+                </div>
+                <div>
+                    @if (NewItem == 1)
+                    {
+                        <button @onclick="OnAdd">Add</button>
+                    }
+                    else if (IsUseItemDelete == false)
+                    {
+                        // do nothing
+                    }
+                    else if (IsSimulated == true)
+                    {
+                        @if (ConfirmDelete == true)
+                        {
+                            <button @onclick="OnConfirm">Confirm</button>
+                        }
+                        else
+                        {
+                            <button @onclick="OnDelete">Delete</button>
+                        }
+                    }
+                    else
+                    {
+                        <AuthorizeView Roles="Administrator">
+                            <Authorized>
+                                @if (ConfirmDelete == true)
+                                {
+                                    <button @onclick="OnConfirm">Confirm</button>
+                                }
+                                else
+                                {
+                                    <button @onclick="OnDelete">Delete</button>
+                                }
+                            </Authorized>
+                        </AuthorizeView>
+                    }
+                </div>
+            </div>
+
+            <div class="card-body">
+                <h5 class="card-title">@item.Description</h5>
+                @if (ConfirmDelete == true)
+                {
+                    <p class="card-text">Delete Item @item.Description of Amount $@item.Amount.ToString()</p>
+                }
+                else
+                {
+                    <p class="card-text">Amount $@item.Amount.ToString()</p>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    [Parameter]
+    public int NewItem { get; set; }
+
+    public DeliverySupport.Models.IItemModel item { get; set; }
+    public string itemImage { get; set; }
+    public int Quantity { get; set; }
+    public bool ConfirmDelete { get; set; }
+    public string Message { get; set; }
+    public bool IsSimulated { get; set; }
+    public bool IsUseItemDelete { get; set; }
+
+    static int ConfirmDeleteItemNum = 0;
+
+    [Parameter]
+    public EventCallback<string> OnAdded { get; set; }
+    [Parameter]
+    public EventCallback<string> OnDeleted { get; set; }
+    [Parameter]
+    public EventCallback<string> OnConfirmDelete { get; set; }
+
+
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        ConfirmDelete = false;
+        item = await itemService.GetItemAsync(Id);
+        if (item.ImageFileName != null)
+            itemImage = "images/" + item.ImageFileName;
+        Quantity = 1;
+        IsSimulated = itemService.IsSimulated();
+        IsUseItemDelete = itemService.IsUseItemDelete();
+    }
+
+    void OnEdit()
+    {
+
+    }
+
+    async Task  OnDelete()
+    {
+        ConfirmDelete = true;
+        ConfirmDeleteItemNum = item.ItemNum;
+        string str = "Item " + item.ItemNum.ToString() + " " + item.Description + " was deleted";
+        await OnConfirmDelete.InvokeAsync(str);
+    }
+
+    void OnAdd()
+    {
+        string str = "Item " + item.ItemNum.ToString() + " " + item.Description + " was added";
+        cart.AddItemToCart(item.ItemNum, item.Amount, Quantity, item.CategoryNum, item.Description, item.CategoryDescription, item.ImageFileName);
+        OnAdded.InvokeAsync(str);
+    }
+
+    async Task OnConfirm()
+    {
+        ConfirmDeleteItemNum = 0;
+        ConfirmDelete = false;
+        string str = "Item " + item.ItemNum.ToString() + " " + item.Description + " was deleted";
+        await itemService.DeleteItem(item.Id);
+        await OnDeleted.InvokeAsync(str);
+    }
+}
+

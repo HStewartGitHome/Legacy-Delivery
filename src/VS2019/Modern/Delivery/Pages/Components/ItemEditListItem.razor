@@ -1,0 +1,26 @@
+﻿@page "/ItemEditListItem"
+
+
+<div>
+    <ItemCard Id="@Id"></ItemCard>
+</div>
+
+<div>
+    <button @onclick="OnEdit">Edit</button>
+    <button @onclick="OnDelete">Delete</button>
+</div>
+
+@code
+{
+    [Parameter]
+    public int Id { get; set; }
+
+    void OnEdit()
+    {
+
+    }
+
+    void OnDelete()
+    {
+    }
+}

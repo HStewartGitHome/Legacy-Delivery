@@ -1,0 +1,26 @@
+﻿
+@inject IMessageDataService messageService
+
+@if (message != null)
+{
+    <tr>
+        <td>@message.ToName</td>
+        <td>@message.FromName</td>
+        <td>@message.MessageText</td>
+        <td>@message.TimeCreated.ToString()</td>
+        <td>@message.LocationCreated</td>
+    </tr>
+}
+
+@code
+{
+    [Parameter]
+    public int Id { get; set; }
+    public DeliverySupport.Models.IMessageModel message { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        message = await messageService.GetMessageAsync(Id);
+    }
+
+}

@@ -1,0 +1,63 @@
+﻿@page  "/OrderViewItems"
+
+
+@using Delivery.Pages.Components
+@inject IOrderDataService orderService
+
+
+
+@if (items == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item File</th>
+                <th>ItemNum</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Quantity</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in items)
+            {
+                if (item.ImageFileName != null)
+                    itemImage = "images/" + item.ImageFileName;
+
+                <tr>
+                    <td> <img src="@itemImage" height="60" width="60" /></td>
+                    <td>@item.ImageFileName</td>
+                    <td>@item.ItemNum.ToString()</td>
+                    <td>@item.Description</td>
+                    <td>@item.Amount.ToString()F</td>
+                    <td>@item.Quantity.ToString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+
+    [Parameter]
+    public int OrderNum { get; set; }
+    public string itemImage { get; set; }
+
+    private IEnumerable<DeliverySupport.Models.IOrderItemViewModel> items;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (OrderNum > 0)
+        {
+            items = await orderService.GetOrderItemViewForOrderNum(OrderNum);
+
+        }
+    }
+}
+

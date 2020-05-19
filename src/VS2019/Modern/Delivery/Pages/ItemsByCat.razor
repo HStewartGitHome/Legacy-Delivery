@@ -1,0 +1,58 @@
+﻿@page "/ItemsByCat"
+
+
+@using Delivery.Pages.Components
+@inject ICategoryDataService categoryService
+
+
+<h1>Items By Category Editor</h1>
+
+<button @onclick="OnToggle">@ToggleText</button>
+
+@if (itemCategories == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    @foreach (var itemCategory in itemCategories)
+    {
+        <p>Category @itemCategory.CategoryNum - @itemCategory.CategoryDescription</p>
+        @if (UseItemCard == true)
+        {
+            <ItemCardItems CategoryNum="@itemCategory.CategoryNum" NewItem="0"></ItemCardItems>
+        }
+        else
+        {
+            <Itemcatlist CategoryNum="@itemCategory.CategoryNum"></Itemcatlist>    
+        }
+     }
+ }
+
+@code {
+    private IEnumerable<DeliverySupport.Models.IItemCategoryModel> itemCategories;
+    private bool UseItemCard { get; set; }
+    private string ToggleText { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        UseItemCard = true;
+        ToggleText = "Use Item List";
+        await categoryService.CreateOrUpdateDefaultList();
+        itemCategories = await categoryService.GetItemCategoriesAsync();
+    }
+
+    private void OnToggle()
+    {
+        if (UseItemCard == true)
+        {
+            UseItemCard = false;
+            ToggleText = "Use Item Card";
+        }
+        else
+        {
+            UseItemCard = true;
+            ToggleText = "Use Item List";
+        }
+    }
+}

@@ -1,0 +1,43 @@
+﻿@page "/SetUpRoles"
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.Configuration
+
+@inject RoleManager<IdentityRole> roleManager
+@inject UserManager<IdentityUser> userManager
+@inject IConfiguration config
+
+<h3>Set Up Roles</h3>
+<p>
+    This page has now set up the roles and marked the appropriate user as administrator.
+</p>
+
+@code {      
+    protected override async Task OnParametersSetAsync()
+    {
+        await SetUpAuth();
+    }
+
+    private async Task SetUpAuth()
+    {
+        const string adminstrator = "Administrator";
+        string[] roles = { adminstrator };
+
+        foreach (var role in roles)
+        {
+            var roleExist = await roleManager.RoleExistsAsync(role);
+
+            if (roleExist == false)
+            {
+                await roleManager.CreateAsync(new IdentityRole(role));
+            }
+        }
+
+        var userEmail = config.GetValue<string>("AdminUser");
+        var user = await userManager.FindByEmailAsync(userEmail);
+
+        if (user != null)
+        {
+            await userManager.AddToRoleAsync(user, adminstrator);
+        }
+    }
+}

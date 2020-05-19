@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "GetServiceXML": {
+      "commandName": "Project",
+      "commandLineArgs": "/SEEDITEMLIST /..\\data\\itemlist.xml",
+      "workingDirectory": "C:\\SRC\\Legacy-Delivery\\build\\Data"
+    }
+  }
+}

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Context xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+  <Method>SAVEROUTER</Method>
+  <ID>10330_00134_SAVEROUTER</ID>
+  <RequestType>1</RequestType>
+  <Location>LEGACY-CLIENT</Location>
+  <Time>5/18/2020 11:33:19 AM</Time>
+  <InOrder>
+    <OrderNum>10330</OrderNum>
+    <Destination>1</Destination>
+    <BeforeTax>14.41</BeforeTax>
+    <Tax> 0.86</Tax>
+    <Shipping> 0.00</Shipping>
+    <Tip> 0.00</Tip>
+    <Total>15.27</Total>
+    <Items>
+      <Item>
+        <ItemNum>1011</ItemNum>
+        <Description>365 Everyday Value, Organic Baby Carrots, 1 lb    </Description>
+        <Amount> 1.69</Amount>
+        <Quantity>1</Quantity>
+        <Category>3</Category>
+      </Item>
+      <Item>
+        <ItemNum>1013</ItemNum>
+        <Description>Dole Bananas, 2 lb Bag                            </Description>
+        <Amount> 0.98</Amount>
+        <Quantity>2</Quantity>
+        <Category>2</Category>
+      </Item>
+      <Item>
+        <ItemNum>1034</ItemNum>
+        <Description>Red Seedless Grapes, 2lb                          </Description>
+        <Amount> 5.38</Amount>
+        <Quantity>2</Quantity>
+        <Category>2</Category>
+      </Item>
+    </Items>
+    <CustomerObj>
+      <CustomerNum>1060</CustomerNum>
+      <Name>My Name</Name>
+      <Address>1111 My Address</Address>
+      <City>My City</City>
+      <State>NC</State>
+      <Zip>28111</Zip>
+    </CustomerObj>
+  </InOrder>
+  <MessageObj>
+  </MessageObj>
+</Context>

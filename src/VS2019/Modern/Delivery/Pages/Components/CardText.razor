@@ -1,0 +1,68 @@
+﻿
+
+<p>@GetCardMessage()</p>
+
+@code {
+
+    [Parameter]
+    public int CardType { get; set; }
+    [Parameter]
+    public string CardIndex { get; set; }
+
+    public string CardMessage { get; set; }
+
+
+
+
+    public string GetCardMessage()
+    {
+        CardMessage = "Unknown for CardType=" + CardType.ToString() + " CardIndex=" + CardIndex;
+
+        if (CardType == 0)
+        {
+            switch (CardIndex)
+            {
+                case "0":
+                    CardMessage = "This is an example of Main screen in Legacy C++ Application";
+                    break;
+                case "1":
+                    CardMessage = "This is an example of screen that show for user to send message, and example of XML that is created with the message";
+                    break;
+                case "2":
+                    CardMessage = "This is an example of screen to Add Customer C++ Legacy Screen";
+                    break;
+                case "3":
+                    CardMessage = "This is an example of screen to Add New Item C++ Legacy Screen";
+                    break;
+                case "4":
+                    CardMessage = "This is an example of the Main C++ Legacy screen with Order Items added to the screen";
+                    break;
+                case "5":
+                    CardMessage = "This is an example Save Order C++ Legacy Screen, and includes sample XML";
+                    break;
+                case "6":
+                    CardMessage = "This is example the test screen included in Legcacy C++ Application";
+                    break;
+            }
+        }
+        else if (CardType == 2)
+        {
+            switch (CardIndex)
+            {
+                case "0":
+                    CardMessage = "This shows the schema for Order, OrderItem and OrderCustomer - not there can be union with Item";
+                    break;
+                case "1":
+                    CardMessage = "This shows the schema for Item and Category, can be union with OrderItem";
+                    break;
+                case "2":
+                    CardMessage = "This is schema for Messages";
+                    break;
+                case "3":
+                    CardMessage = "This is a sequence diagram showing flow of Legacy vs Modern Application when saving order. Same database calls are used for both";
+                    break;
+            }
+        }
+        return CardMessage;
+    }
+}

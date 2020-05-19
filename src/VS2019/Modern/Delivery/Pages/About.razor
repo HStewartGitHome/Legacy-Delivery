@@ -1,0 +1,125 @@
+﻿@page "/About"
+@inject IItemDataService itemService
+
+<h3>About Legacy-Delivery</h3>
+
+@if (IsSimulated == true)
+{
+    <p> </p>
+    <p>Is running on simualted in memory database</p>
+}
+else
+{
+
+    <p> </p>
+    <p> Is running on SQL Server Database</p>
+ }
+
+<div class="col-sm-6 col-md-6">
+    <p></p>
+    <p>
+        This is running on the modern .Net Core 3.1 Blazor application, that is compatible
+        with the Legacy Visual Studio 2008 C++ Application (Except is Modern version is hosted on Azure)
+    </p>
+    <p></p>
+
+</div>
+
+
+        <div class="col-sm-6 col-md-6 item">
+            <div class="card w-100">
+                <button @onclick="OnToggleLegacy">@ShowLegacyText</button>
+            </div>
+        </div>
+
+
+
+        @if (IsShowLegacy == true)
+        {
+            <div class="col-sm-6 col-md-6">
+                <p></p>
+                <p>
+                    The following is example screen shots for C++ application. Click Next for next screen
+                </p>
+            </div>
+
+            <NextCard CardType="0" XMLCardType="1"></NextCard>
+        }
+
+        <p></p>
+
+
+        <div class="col-sm-6 col-md-6 item">
+            <div class="card w-100">
+                <button @onclick="OnToggleModern">@ShowModernText</button>
+            </div>
+        </div>
+
+
+        @if (IsShowModern == true)
+        {
+            <div class="col-sm-6 col-md-6">
+                <p></p>
+                <p>
+                    The following is details about this application. Click Next for next screen
+                </p>
+            </div>
+
+            <NextCard CardType="2" XMLCardType="2"></NextCard>
+        }
+
+        @code {
+    private bool IsShowLegacy { get; set; }
+        private string ShowLegacyText { get; set; }
+        private bool IsShowModern { get; set; }
+        private string ShowModernText { get; set; }
+        private bool IsSimulated { get; set; }
+
+        protected async override Task OnInitializedAsync()
+        {
+            IsSimulated = itemService.IsSimulated();
+
+            IsShowLegacy = true;
+            ChangeLegacyText();
+            IsShowModern = false;
+            ChangeModernText();
+
+            await Task.Delay(0);
+        }
+
+
+        public async Task OnToggleLegacy()
+        {
+            IsShowLegacy = !IsShowLegacy;
+
+            ChangeLegacyText();
+
+            await Task.Delay(0);
+        }
+
+        public async Task OnToggleModern()
+        {
+            IsShowModern = !IsShowModern;
+
+            ChangeModernText();
+
+            await Task.Delay(0);
+        }
+
+        internal void ChangeLegacyText()
+        {
+            if (IsShowLegacy == true)
+                ShowLegacyText = "Hide Legacy Information";
+            else
+                ShowLegacyText = "Show Legacy Information";
+        }
+
+
+        internal void ChangeModernText()
+        {
+            if (IsShowModern == true)
+                ShowModernText = "Hide Modern Information";
+            else
+                ShowModernText = "Show Modern Information";
+        }
+        }

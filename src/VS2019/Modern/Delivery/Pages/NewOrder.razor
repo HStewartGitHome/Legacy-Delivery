@@ -1,0 +1,134 @@
+﻿@page "/neworder"
+
+@inject ICategoryDataService categoryService
+@inject IOrderDataService orderService
+@inject Microsoft.Extensions.Configuration.IConfiguration configuration;
+@inject DeliverySupport.Services.IOrderCart cart
+@inject DeliverySupport.Services.IDataCleanup dataCleanup;
+
+
+
+<h1>New Order</h1>
+
+<p>This component demonstrates for creating new order.</p>
+
+@if (itemCategories == null)
+{
+    <p><em>Loading...</em></p>
+
+}
+else if (ConfirmTotal == true)
+{
+    <p></p>
+    <ItemCartList OrderNum="@OrderNum" ItemCount="@NewItemCount"></ItemCartList>
+    <p></p>
+    <p>Please enter Customer Information for Order</p>
+    <p></p>
+    <AddCustomer OnTotal="@OnTotal"></AddCustomer>
+}
+else
+{
+    <p>OrderNum @cart.OrderNum Total @cart.Total.ToString("F2")</p>
+    @if (cart.Total > 0)
+    {
+        <button @onclick="OnConfirmTotal">Total</button>
+        <button @onclick="OnToggleList">@ToggleText</button>
+    }
+
+
+    @if (ShowList == true)
+    {
+        if (ItemCount != NewItemCount)
+        {
+            ItemCount = NewItemCount;
+            <p></p>
+            <ItemCartList OrderNum="@OrderNum" ItemCount="@ItemCount"></ItemCartList>
+        }
+    }
+    <p></p>
+
+    @if (ConfirmTotal == false)
+    {
+        foreach (var itemCategory in itemCategories)
+        {
+            <ItemCardItems CategoryNum="@itemCategory.CategoryNum" NewItem="1" OnAdded="@HandleOnAdded"></ItemCardItems>
+        }
+
+    }
+}
+
+@code {
+    private IEnumerable<DeliverySupport.Models.IItemCategoryModel> itemCategories;
+    private string ToggleText { get; set; }
+    private bool ShowList { get; set; }
+    private int OrderNum { get; set; }
+    private int ItemCount { get; set; }
+    private int NewItemCount { get; set; }
+    private bool ConfirmTotal { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        ShowList = false;
+        ToggleText = "Show List";
+        ItemCount = 0;
+        NewItemCount = 0;
+        ConfirmTotal = false;
+
+        // this remove older orders - just to keep data clean
+        string str = configuration["AppSettings:CleanupHours"];
+        DateTime time = dataCleanup.GetPreviousDate(str);
+        await orderService.DeleteOrdersBeforeTime(time);
+
+        await categoryService.CreateOrUpdateDefaultList();
+        itemCategories = await categoryService.GetItemCategoriesAsync();
+
+
+        OrderNum = await orderService.GetMaxOrderNum() + 1;
+        cart.NewOrderCart("WEB", OrderNum);
+
+
+    }
+
+    public async Task OnConfirmTotal()
+    {
+        ConfirmTotal = true;
+        ShowList = true;
+        ToggleText = "Hide List";
+        ItemCount = 0;
+
+        await Task.Delay(0);
+    }
+
+    public async Task OnTotal()
+    {
+        ShowList = false;
+        ToggleText = "Show List";
+        ConfirmTotal = false;
+        NewItemCount = 0;
+        await orderService.Create(cart.Order);
+         OrderNum = await orderService.GetMaxOrderNum() + 1;
+        cart.NewOrderCart("WEB", OrderNum);
+
+    }
+
+    public void HandleOnAdded(string msg)
+    {
+        NewItemCount++;
+    }
+
+    public void OnToggleList()
+    {
+        if (ShowList == true)
+        {
+            ShowList = false;
+            ToggleText = "Show List";
+        }
+        else
+        {
+            ShowList = true;
+            ToggleText = "Hide List";
+            OrderNum = cart.OrderNum;
+        }
+        ItemCount = 0;
+    }
+}

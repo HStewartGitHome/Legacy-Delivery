@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Item>
+    <ItemNum>1030</ItemNum>
+    <Description>Organic Lemons, 2lb</Description>
+    <Amount>4.99</Amount>
+    <Quantity>1</Quantity>
+    <ImageFileName>Lemons.png</ImageFileName>
+    <Category>2</Category>
+  </Item>
+  <Item>
+    <ItemNum>1031</ItemNum>
+    <Description>Yellow Onion, One Large</Description>
+    <Amount>0.56</Amount>
+    <Quantity>1</Quantity>
+    <ImageFileName>Onion.png</ImageFileName>
+    <Category>3</Category>
+  </Item>
+  <Item>
+    <ItemNum>1032</ItemNum>
+    <Description>Organic Pear, One Large</Description>
+    <Amount>1.00</Amount>
+    <Quantity>1</Quantity>
+    <ImageFileName>Pear.png</ImageFileName>
+    <Category>2</Category>
+  </Item>
+  <Item>
+    <ItemNum>1033</ItemNum>
+    <Description>Broccoli, One Head</Description>
+    <Amount>3.11</Amount>
+    <Quantity>1</Quantity>
+    <ImageFileName>Broccoli.png</ImageFileName>
+    <Category>3</Category>
+  </Item>
+  <Item>
+    <ItemNum>1034</ItemNum>
+    <Description>Red Seedless Grapes, 2lb</Description>
+    <Amount>5.38</Amount>
+    <Quantity>1</Quantity>
+    <ImageFileName>Grapes.png</ImageFileName>
+    <Category>2</Category>
+  </Item>
+  <Item>
+    <ItemNum>1035</ItemNum>
+    <Description>Orville Redenbacher's Naturals Simply Salted Popcorn, 3-Count</Description>
+    <Amount>3.23</Amount>
+    <Quantity>1</Quantity>
+    <ImageFileName>NaturalLightPopcorn.png</ImageFileName>
+    <Category>13</Category>
+  </Item>
+  <Item>
+    <ItemNum>1036</ItemNum>
+    <Description>Orville Redenbacher's Ultimate Butter Popcorn, 6-Count</Description>
+    <Amount>3.27</Amount>
+    <Quantity>1</Quantity>
+    <ImageFileName>UltimateButterPopcorn.png</ImageFileName>
+    <Category>13</Category>
+  </Item>
+</ArrayOfItem>

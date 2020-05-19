@@ -1,0 +1,30 @@
+﻿@page "/ItemListItem"
+
+@inject IItemDataService itemService
+
+@if ( item != null )
+{ 
+ <tr>
+    <td> <img src="@itemImage" height="60" width="60" /></td>
+    <td>@item.Description</td>
+    <td>$@item.Amount.ToString()</td>
+    <td>@item.DefaultQuantity.ToString()</td>
+ </tr>
+ }
+
+@code 
+{
+    [Parameter]
+    public int Id { get; set; }
+    public DeliverySupport.Models.IItemModel item { get; set; }
+    public string itemImage { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        item = await itemService.GetItemAsync(Id);
+        if (item.ImageFileName != null)
+            itemImage = "images/" + item.ImageFileName;
+    }
+
+
+}

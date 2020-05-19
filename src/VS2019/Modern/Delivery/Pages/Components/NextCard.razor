@@ -1,0 +1,102 @@
+﻿@inject DeliverySupport.Services.INextImage nextImage
+
+@if (HasContents == true)
+{
+<div class="col-sm-6 col-md-6 item">
+    <div class="card w-100">
+        <div class="card-img-top">
+            <div>
+                <img class="img-thumbnail" src="@CardImage">
+            </div>
+        </div>
+
+        <div class="card-body">
+            @if (currentIndex < maxIndex)
+            {
+                <button @onclick="OnNext"> Next </button>
+            }
+            @if (currentIndex > 0)
+            {
+                <button @onclick="OnPrev"> Previous </button>
+            }
+            <h5 class="card-title">@CardTitle</h5>
+            <CardText CardType="@CardType" CardIndex="@CardText"></CardText>
+        </div>
+
+        @if (HasXML == true)
+        {
+            <div class="card-img-bottom">
+                <div>
+                    <img class="img-thumbnail" src="@XMLImage">
+                </div>
+            </div>
+        }
+    </div>
+</div>
+}
+
+@code {
+
+    [Parameter]
+    public int CardType { get; set; }
+    [Parameter]
+    public int XMLCardType { get; set; }
+
+    public int currentIndex { get; set; }
+    public int maxIndex { get; set; }
+    private string CardImage { get; set; }
+    private string CardTitle { get; set; }
+    private string CardText { get; set; }
+    private bool HasXML { get; set; }
+    private string XMLImage { get; set; }
+    private bool HasContents { get; set; }
+
+
+    protected async override Task OnInitializedAsync()
+    {
+        nextImage.Initialize(CardType);
+        await Common();
+    }
+
+    internal async Task Common()
+    {
+        currentIndex = nextImage.CurrentIndex;
+        maxIndex = nextImage.CurrentCount - 1;
+        CardImage = nextImage.ImageAtCurrentIndex(CardType);
+        CardTitle = nextImage.TitleAtCurrentIndex(CardType);
+        CardText = nextImage.TextAtCurrentIndex(CardType);
+
+        if (nextImage.CurrentCount > 0)
+            HasContents = true;
+        else
+            HasContents = false;
+
+
+        if ( XMLCardType != CardType )
+        {
+            XMLImage = nextImage.ImageAtCurrentIndex(XMLCardType);
+            if (XMLImage.Length > 0)
+                HasXML = true;
+            else
+                HasXML = false;
+        }
+
+
+
+        await Task.Delay(0);
+    }
+
+
+    public async Task OnNext()
+    {
+        nextImage.Next(CardType);
+        await Common();
+    }
+
+
+    public async Task OnPrev()
+    {
+        nextImage.Previous(CardType);
+        await Common();
+    }
+}
