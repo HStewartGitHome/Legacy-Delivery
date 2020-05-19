@@ -6,7 +6,7 @@
 
 
   "AppSettings": {
-    "RouterDir": "C:\\SRC\\Legacy-Delivery\\build\\Data\\Router"
+    "RouterDir": "C:\\SRC\\Legacy-Delivery-Master\\build\\Data\\Router"
   },
  
   "Serilog": {
