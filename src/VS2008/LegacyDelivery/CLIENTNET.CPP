@@ -3,7 +3,7 @@
 #include "clientnet.h"
 #include "lognet.h"
 
-#import "..\..\..\build\bin\bridge.tlb" raw_interfaces_only
+#import "..\..\..\build\binDebug\bridge.tlb" raw_interfaces_only
 
 Bridge::IClientBridgePtr spClient = NULL;
 BOOL CClientNet:: m_bNotInitialized = TRUE;

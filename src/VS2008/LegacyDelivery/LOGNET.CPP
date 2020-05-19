@@ -4,7 +4,7 @@
 #include "logstackwalker.h"
 #include "win32_exception.h"
 
-#import "..\..\..\build\bin\bridge.tlb" raw_interfaces_only
+#import "..\..\..\build\binDebug\bridge.tlb" raw_interfaces_only
 
 Bridge::INetLogPtr spLog = NULL;
 BOOL CLogNet:: m_bNotInitialized = TRUE;
