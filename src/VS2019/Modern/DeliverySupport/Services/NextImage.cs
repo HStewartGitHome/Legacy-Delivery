@@ -60,6 +60,36 @@ namespace DeliverySupport.Services
             "Legacy C++ Modern Sequence Diagram"
         };
 
+        private static readonly string[] legacyWinFormImages = new[]
+      {
+               "legacy/winformmain.png",
+               "legacy/winformsendmessage.png",
+               "legacy/winformaddcust.png",
+               "legacy/winformadditem.png",
+               "legacy/winformmainorder.png",
+               "legacy/winformsaveorder.png"
+        };
+
+        private static readonly string[] legacyWinFormXML = new[]
+ {
+               "",
+               "legacy/winformsendmessage_xml.png",
+               "",
+               "",
+               "",
+               "legacy/winformsaveorder_xml.png"
+        };
+
+        private static readonly string[] legacyWinFormTitles = new[]
+        {
+            "Main WinForm Legacy Screen",
+            "Send Message WinForm Legacy Screen",
+            "Add Customer WinForm Legacy Screen",
+            "Add New Item WinForm Legacy Screen",
+            "Main WinForm Legacy Screen with Order",
+            "Save Order WinForm Legacy Screen"
+        };
+
         public void Initialize(int cardType)
         {
             CurrentIndex = 0;
@@ -69,14 +99,14 @@ namespace DeliverySupport.Services
                 CurrentCount = 7;
             else if (cardType == 2)
                 CurrentCount = 4;
+            else if (cardType == 6)
+                CurrentCount = 6;
+            else if (cardType == 7)
+                CurrentCount = 6;
             else
                 CurrentCount = 0;
 
             SetCardContext(cardType);
-            if (cardType == 0)
-                SetCardContext(1);
-        
-
         }
 
 
@@ -112,6 +142,10 @@ namespace DeliverySupport.Services
                 return legacyXML[CurrentIndex];
             else if (cardType == 2)
                 return modernImages[CurrentIndex];
+            else if (cardType == 6)
+                return legacyWinFormImages[CurrentIndex];
+            else if (cardType == 7)
+                return legacyWinFormXML[CurrentIndex];
             else
                 return "";
         }
@@ -123,8 +157,8 @@ namespace DeliverySupport.Services
                 return legacyTitles[CurrentIndex];
             else if (cardType == 1)
                 return ImageAtCurrentIndex(cardType);
-            else if (cardType == 2)
-                return modernTitles[CurrentIndex];
+            else if (cardType == 6)
+                return legacyWinFormTitles[CurrentIndex];
             else
                 return "";
         }
@@ -145,6 +179,9 @@ namespace DeliverySupport.Services
             };
 
             cards[cardType] = context;
+
+            if ((cardType == 0) || (cardType == 6))
+                cards[cardType + 1] = context;
         }
 
         internal void GetCardContext(int cardType)

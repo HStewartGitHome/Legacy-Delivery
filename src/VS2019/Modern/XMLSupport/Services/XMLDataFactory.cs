@@ -92,7 +92,6 @@ namespace XMLSupport.Services
 
             message.ToName = xmlMessage.ToName;
             message.FromName = xmlMessage.FromName;
-            message.FromName = "LEGACY";
             message.MessageText = xmlMessage.MessageText;
 
             return message;
