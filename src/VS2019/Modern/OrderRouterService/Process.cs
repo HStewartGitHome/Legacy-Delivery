@@ -3,6 +3,7 @@ using DeliverySupport.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
@@ -71,20 +72,28 @@ namespace OrderRouterService
         private bool ProcessFile(string file)
         {
             bool result = false;
-            var serializer = new Serializer();
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(Context));
 
-            Context contextReturn = (Context)serializer.DeserializeFile(xmlSerializer, file);
-            if (contextReturn != null)
+            try
+            { 
+                var serializer = new Serializer();
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Context));
+
+                Context contextReturn = (Context)serializer.DeserializeFile(xmlSerializer, file);
+                if (contextReturn != null)
+                {
+                    if (contextReturn.RequestType == 1)
+                        result = ProcessOrderContext(contextReturn);
+                    else
+                        result = ProcessMessageContext(contextReturn);
+                    if (result)
+                        _logger.LogInformation("Context has been processed");
+                    else
+                        _logger.LogWarning("Context failed to be processed");
+                }
+            }
+            catch( Exception e )
             {
-                if (contextReturn.RequestType == 1)
-                    result = ProcessOrderContext(contextReturn);
-                else
-                    result = ProcessMessageContext(contextReturn);
-                if (result)
-                    _logger.LogInformation("Context has been processed");
-                else
-                    _logger.LogWarning("Context failed to be processed");
+                _logger.LogError("Exception trying to process context", e);
             }
 
             return result;

@@ -19,6 +19,8 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Databa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderRouterService", "OrderRouterService\OrderRouterService.csproj", "{ADBE8760-CF0E-4D24-833D-436873C50CDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegacyWinForm", "LegacyWinForm\LegacyWinForm.csproj", "{06757E76-47A1-4DE3-8ED7-A6720AA02CAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{ADBE8760-CF0E-4D24-833D-436873C50CDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADBE8760-CF0E-4D24-833D-436873C50CDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADBE8760-CF0E-4D24-833D-436873C50CDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06757E76-47A1-4DE3-8ED7-A6720AA02CAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06757E76-47A1-4DE3-8ED7-A6720AA02CAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06757E76-47A1-4DE3-8ED7-A6720AA02CAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06757E76-47A1-4DE3-8ED7-A6720AA02CAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

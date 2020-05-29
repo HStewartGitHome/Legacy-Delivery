@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>C:\SRC\Legacy-Delivery\build\BinDebug\</OutputPath>
+    <OutputPath>C:\SRC\Legacy-Delivery-Master\build\BinDebug\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>C:\SRC\Legacy-Delivery\build\Bin\</OutputPath>
+    <OutputPath>C:\SRC\Legacy-Delivery-master\build\bin\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
