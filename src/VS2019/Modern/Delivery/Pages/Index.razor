@@ -1,17 +1,37 @@
 ﻿@page "/"
+@inject IItemDataService itemService
+
 
 <h1>Hello, welcome to Modern Delivery Application!</h1>
 
 <p>
-    This application demostration Microsoft newly release Blazor application, that
-    is compatible with with older Visual Studio 2008 application using tecniques of
+    This application demostrates Microsoft newly release Blazor application framework, that
+    is compatible with with older Visual Studio 2008 application using techniques of
     routing xml to server and storing information in database.
 </p>
+
+@if (IsSimulated == true)
+    {
+<p>
+    This is running with Simulated DataBase service which allows for Azure loading without
+    the need for SQL database. ItemCategories and Items are initialized on load of server.
+</p>
+    }
+    else
+    {
+<p>
+    This is running with SQL service which could be replace with simulated services with
+    change in configuration,  all SQL service requests are made with Stored Procedures
+    Using Dapper.  Limited support for Authorization is provided with Entity Framework.
+</p>
+    }
 
 <p>
     A typical C++ application sometimes takes a week or more to add some functionality.
     However, with the new Blazor page, functionality can be achieved within minutes
     utilizing the same database and is also portable across multiple platforms..
+    Also provided is a WinForm version of similar Legacy Application that is similar to C++
+    Legacy application.
 </p>
 
 <p> Stewart Hyde </p>
@@ -19,6 +39,11 @@
 <a href="about">About this project</a>
 
 
-@code {
+@code { private bool IsSimulated { get; set; }
 
-}
+    protected async override Task OnInitializedAsync()
+    {
+        IsSimulated = itemService.IsSimulated();
+
+        await Task.Delay(0);
+    } }
