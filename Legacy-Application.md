@@ -45,6 +45,9 @@ The following modernization techniques are demonstrated in this application
 -   Ability to router data to server via a .Net Core 3.1 Router via simple XML.
     This is use for both orders and messages.
 
+-   Similar a WinForm application is provided as an attempt to integrated legacy
+    .Net windows forms into the idea.
+
 ### Compile considerations
 
 To compile VS 2008 Code, you will need Microsoft Visual Studio 2008. To run the
@@ -54,6 +57,21 @@ exposed interface. You need to run tlbexp on the dill to create TLB file.
 
 The .Net core executables are contain within the netcoreapp3.1 directory in bin
 directory
+
+### Winform example
+
+I desired to try to see how an WinForm application similar to C++ application
+would fit into the idea of this project. I found the following issues
+
+1.  .Net Core WinForm is not ready for prime time and had to eliminate the idea
+
+2.  Converting the DeliverySupport to .Net Standard 2.0 and linking work, but
+    had issue connected to Dapper. Likely dependency issues.
+
+3.  Logging using Microsoft Logging using dependency did not work in Framework.
+
+4.  Decide to use XML techniques of C++ version and using GetServiceXML and
+    OrderRouterService.exe for communications.
 
 ### Example screens
 
@@ -65,9 +83,13 @@ This is screen popup to send message
 
 ![A screenshot of a social media post Description automatically generated](media/814cabaf3d030c8b2d96612b5e923f4a.jpg)
 
+A screenshot of a social media post Description automatically generated
+
 The following is example of xml generated when sending message
 
 ![A screenshot of a social media post Description automatically generated](media/6dde7d6bc508edb6439a1419512b7148.jpg)
+
+A screenshot of a social media post Description automatically generated
 
 This is the screen to add customer information when new order or new item
 
@@ -78,9 +100,13 @@ GetServiceXML and retrieved from database via SQLServer
 
 ![A screenshot of a social media post Description automatically generated](media/07c17384af1370f5f2049bb973adc360.jpg)
 
+A screenshot of a social media post Description automatically generated
+
 This is screen after adding some items to order
 
 ![A screenshot of a cell phone Description automatically generated](media/8668cbff3b56da010f72c6fad836f31d.jpg)
+
+A screenshot of a cell phone Description automatically generated
 
 The following screen for saving the order – only real option now is for the
 router since logic for C++ to get XML is currently not added because I am trying
@@ -88,12 +114,18 @@ to focus on using new technology and dealing with older technology takes time.
 
 ![A screenshot of a cell phone Description automatically generated](media/1f209ae9c2a4cd439eaf4382790981d4.jpg)
 
+A screenshot of a cell phone Description automatically generated
+
 The following is example of the XML that C++ application will place in the
 Router’s directory to send to server
 
 ![A screenshot of a cell phone Description automatically generated](media/6dad5e44871c1ca944f3d5b5c0e3f1d2.jpg)
 
+A screenshot of a cell phone Description automatically generated
+
 There is a so screen to test exception stack and call stack logging. Exception
 is done by divide by zero test and option to manually do a call stack.
 
 ![A screenshot of a social media post Description automatically generated](media/86a8266b89e57284989f87e9a6a82162.jpg)
+
+A screenshot of a social media post Description automatically generated
